@@ -1,7 +1,7 @@
+<div role="alert" ng-show="formError" class="more15alert">
+    {{ formError }}
+</div>
 <form ng-submit="onSubmit()" role="form">
-    <div role="alert" ng-show="formError" class="alert alert-danger">
-        {{ formError }}
-    </div>
 	<input type="text" name="title" ng-model="formData.title" placeholder="title to 15 characters" required="required"><br>
 	<textarea placeholder="description" rows="5" ng-model="formData.description" required="true"></textarea><br>
 	<button type="submit" class="btn btn-info btn-sm">CREATE</button>
