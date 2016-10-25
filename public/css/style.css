@@ -105,7 +105,11 @@ form button {
 
 .descHead { text-align: center; }
 
-.more15alert { text-align: center; }
+.more15alert { 
+	text-align: center;
+	color: #F44336;
+	font-size: 1.5em; 
+}
 
 .footer {
 	text-align: center;
