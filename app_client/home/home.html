@@ -1,0 +1,29 @@
+<page-header></page-header>
+
+<div class="container-fluid">
+	<main>
+
+	    <div class="row">
+	        <div class="col-xs-12">
+		        <button class="btn btn-my center-block " type="button" ng-click="createTask()">CREATE TASK</button>
+		    </div>
+		</div>
+
+		<div ng-show="message" class="message col-xs-8 col-xs-offset-2">
+		    <h3>{{ message }}</h3>
+		</div>
+
+		<div class="row">
+		    <ul ng-show="data" class="col-xs-12 col-md-8 col-md-offset-2">
+		    	<li ng-repeat="record in data.records">
+		    		<span><a href="record/{{record._id}}">{{record.title}}</a></span>
+			        <button class="btn btn-success btn-sm">UPDATE</button>
+		            <button class="btn btn-info btn-sm">DROP</button>
+		    	</li>
+		    </ul>
+		</div>
+
+	</main>
+	
+</div>
+<footer-generic></footer-generic>
