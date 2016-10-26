@@ -18,17 +18,17 @@ function modalCtrl ($scope, $uibModalInstance, todoData) {
 		else {
 			todoData.recordCreate($scope.formData)
 			  .success(function(data) {
-	            $scope.close();
+	            $scope.close(data);
 			  })
 	          .error(function(data) {
-	          	$scope.formError = "Your review has not been saved, please try again";
+	          	$scope.formError = "Please try again";
 	          });
 			return false;
 		}
 	};
 
-	$scope.close = function () {
-		$uibModalInstance.close();
+	$scope.close = function (result) {
+		$uibModalInstance.close(result);
 	}
 
 	$scope.cancel = function () { 

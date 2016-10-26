@@ -3,6 +3,8 @@ body {
 	font-family: 'Nunito', sans-serif; 
 }
 
+h2 { font-weight: bold; }
+
 a { color: #212121; }
 
 a:hover {
@@ -12,7 +14,7 @@ a:hover {
 
 .navbar .topLine {
 	width: 100%;
-	height: 20px;
+	height: 1em;
 	background-color: #D32F2F;
 }
 
@@ -21,19 +23,17 @@ a:hover {
 	color: #FFFFFF;
 }
 
-h2 { font-weight: bold; }
-
 .btn { font-weight: bold; }
 
 .btn-my {
-	margin-bottom: 20px;
+	margin-bottom: 1em;
 	background-color: #9E9E9E;
 	border: 1px solid #9E9E9E;
-	box-shadow: 0px 5px 0px #757575;
+	box-shadow: 0px 4px 0px #757575;
 }
 
 .btn-my:active { 
-	box-shadow: 0px 5px 0px #757575;
+	box-shadow: 0px 4px 0px #757575;
 	background-color: #9e9e9e;
 	border: 1px solid #9E9E9E; 
 }
@@ -41,7 +41,7 @@ h2 { font-weight: bold; }
 ul { list-style: none; }
 
 ul li {
-	height: 40px;
+	height: 3em;
 	border-bottom: 2px solid #BDBDBD;
 	margin-bottom: 10px;
 }
@@ -75,11 +75,11 @@ ul li button {
 
 .message h3 {
     color: #212121; 
-	margin-top: 50px; 
+	margin-top: 2em; 
 }
 
 .modal-content {
-	height: 300px;
+	height: 22em;
 	background-color: #efede7;
 }
 

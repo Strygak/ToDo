@@ -3,12 +3,13 @@
 	homeCtrl.$inject = ['$scope', '$uibModal', 'todoData'];
 
 	function homeCtrl ($scope, $uibModal, todoData) {
-
+        $scope.on = true;
         todoData.recordAll()
 	      .success(function (data) {
 	          $scope.data = { records: data };
               if ($scope.data.records[0]) {
 		          $scope.message = "";
+		          $scope.on = false;
 	          }
 	          else {
 		          $scope.message = "No records";
@@ -25,7 +26,9 @@
 	        });  
 
 	        modalInstance.result.then(function (data) {
+	        	console.log(data);
 	        	$scope.data.records.push(data);
+	        	$scope.on = false;
 	        }); 
 	    };
 
