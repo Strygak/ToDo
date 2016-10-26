@@ -12,7 +12,7 @@
 		          $scope.on = false;
 	          }
 	          else {
-		          $scope.message = "No records";
+		          $scope.message = "There is no records";
 	          }
 	      })
 	      .error(function (data) {
@@ -26,7 +26,6 @@
 	        });  
 
 	        modalInstance.result.then(function (data) {
-	        	console.log(data);
 	        	$scope.data.records.push(data);
 	        	$scope.on = false;
 	        }); 

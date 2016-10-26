@@ -21,9 +21,9 @@ var appClientFiles = [
   'app_client/modalForm/uibModalController.js',
   'app_client/recordDetail/recordCtrl.js',
   'app_client/home/home.ctrl.js',
-  'app_client/directives/footerDirective/footer.directive.js',
-  'app_client/directives/pageHeader/pageHeader.js',
-  'app_client/services/todoData.js'
+  'app_client/common/directives/footerDirective/footer.directive.js',
+  'app_client/common/directives/pageHeader/pageHeader.js',
+  'app_client/common/services/todoData.js'
 ];
 
 var uglified = uglifyJs.minify(appClientFiles, { compress : false });
