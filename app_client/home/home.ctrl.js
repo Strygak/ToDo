@@ -8,7 +8,6 @@
 	      .success(function (data) {
 	          $scope.data = { records: data };
               if ($scope.data.records[0]) {
-		          $scope.message = "";
 		          $scope.on = false;
 	          }
 	          else {
@@ -31,8 +30,29 @@
 	        }); 
 	    };
 
-	    $scope.deleteTask = function () {};
+	    $scope.deleteTask = function (id) {
+	    	todoData.deleteOne(id)
+	    	  .success(function(data) {
+	    	  	console.log(data);
 
+	    	  	todoData.recordAll()
+	              .success(function (data) {
+	                $scope.data = { records: data };
+                    if ($scope.data.records[0]) {
+		              $scope.on = false;
+	                }
+	                else {
+		              $scope.on = true;
+	                }
+	              })
+	              .error(function (data) {
+	      	        $scope.message = "There is no records";
+	              });
+	    	  })
+	    	  .error(function(data) {
+	    	  	console.log(data);
+	    	  })
+	    };
 	};
 
     angular.module('app')

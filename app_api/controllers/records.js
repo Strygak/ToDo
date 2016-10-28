@@ -118,8 +118,7 @@ module.exports.deleteOne = function (req, res) {
         return;
       }
       sendJsonResponse(res, 204, null);
-    }
-  );
+    });
   } else {
     sendJsonResponse(res, 404, {
       "message": "No recordid"

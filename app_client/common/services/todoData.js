@@ -21,8 +21,8 @@
 
 	    var addRecord = function () {};
 
-	    var deleteOne = function (data) {
-	    	return $http.delete('api/record/:recordid');
+	    var deleteOne = function (recordid) {
+	    	return $http.delete('api/record/' + recordid);
 	    };
 
 	    return {
