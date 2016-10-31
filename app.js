@@ -19,6 +19,7 @@ app.set('view engine', 'jade');
 var appClientFiles = [
   'app_client/app.js',
   'app_client/modalForm/uibModalController.js',
+  'app_client/updateModalForm/updateTaskModalCtrl.js',
   'app_client/recordDetail/recordCtrl.js',
   'app_client/home/home.ctrl.js',
   'app_client/common/directives/footerDirective/footer.directive.js',
@@ -45,7 +46,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'app_client')));
 
-//app.use('/', routes);
 app.use('/api', routesApi);
 
 app.use(function(req, res) {

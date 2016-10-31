@@ -19,17 +19,20 @@
 			return $http.get('api/record/' + recordid);
 		};
 
-	    var addRecord = function () {};
+	    var updateOne = function (recordid, data) {
+	    	return $http.put('api/record/' + recordid, data);
+	    };
 
 	    var deleteOne = function (recordid) {
 	    	return $http.delete('api/record/' + recordid);
 	    };
 
 	    return {
-		    recordCreate: recordCreate,
-		    recordAll: recordAll,
-		    readOne: readOne,
-		    deleteOne: deleteOne
+		    recordCreate : recordCreate,
+		    recordAll : recordAll,
+		    readOne : readOne,
+		    updateOne : updateOne,
+		    deleteOne : deleteOne
 	    };
 
 	}

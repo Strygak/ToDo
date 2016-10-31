@@ -11,8 +11,8 @@ function modalCtrl ($scope, $uibModalInstance, todoData) {
 
 	$scope.onSubmit = function () {
 
-		if ($scope.formData.title.length > 15) {
-		  	$scope.formError = 'more than 15 characters';
+		if ($scope.formData.title.length > 17) {
+		  	$scope.formError = 'more than 17 characters';
 		  	return false;
 		}
 		else {

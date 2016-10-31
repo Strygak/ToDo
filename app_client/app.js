@@ -17,5 +17,5 @@ function config ($routeProvider, $locationProvider) {
 }
 
 angular
-   .module('app')
-   .config(['$routeProvider', '$locationProvider', config]);
+ .module('app')
+ .config(['$routeProvider', '$locationProvider', config]);
