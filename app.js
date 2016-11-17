@@ -1,4 +1,6 @@
 //require('dotenv').load();
+var JWT_SECRET=thisIsSecret;
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
