@@ -4,10 +4,11 @@ angular
   .module('app')
   .controller('modalCtrl', modalCtrl);
 
-modalCtrl.$inject = ['$scope', '$uibModalInstance', 'todoData'];
+modalCtrl.$inject = ['$scope', '$uibModalInstance', 'todoData', 'authentication'];
 
-function modalCtrl ($scope, $uibModalInstance, todoData) {
+function modalCtrl ($scope, $uibModalInstance, todoData, authentication) {
 	$scope.formError = "";
+	$scope.currentUser = authentication.currentUser();
 
 	$scope.onSubmit = function () {
 
@@ -16,6 +17,7 @@ function modalCtrl ($scope, $uibModalInstance, todoData) {
 		  	return false;
 		}
 		else {
+			$scope.formData.email = $scope.currentUser.email;
 			todoData.recordCreate($scope.formData)
 			  .success(function(data) {
 	            $scope.close(data);

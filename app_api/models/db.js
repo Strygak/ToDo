@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var gracefulShutdown;
 var dbURI = 'mongodb://localhost/test';
 if (process.env.NODE_ENV === 'production') {
-    dbURI = process.env.MONGOLAB_URI;
+    dbURI = 'mongodb://heroku_mf1vjvs0:o50ac0npd5rtcbb66i683dr79e@ds037205.mongolab.com:37205/heroku_mf1vjvs0';
 }
 
 mongoose.connect(dbURI);
@@ -18,3 +18,4 @@ mongoose.connection.on('disconnected', function() {
 });
 
 require('./records');
+require('./users');

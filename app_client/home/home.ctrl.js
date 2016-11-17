@@ -1,35 +1,38 @@
 (function () {
 
-	homeCtrl.$inject = ['$scope', '$uibModal', 'todoData'];
+	homeCtrl.$inject = ['$location', '$uibModal', 'todoData', 'authentication'];
 
-	function homeCtrl ($scope, $uibModal, todoData) {
-        todoData.recordAll()
+	function homeCtrl ($location, $uibModal, todoData, authentication) {
+		var vm = this;
+		vm.currentUser = authentication.currentUser();
+        
+        todoData.recordAll(vm.currentUser)
 	      .success(function (data) {
-	          $scope.data = { records: data };
-              if ($scope.data.records[0]) {
-		          $scope.on = false;
+	          vm.data = { records: data };
+              if (vm.data.records[0]) {
+		          vm.on = false;
 	          }
 	          else {
-		          $scope.on = true;
+		          vm.on = true;
 	          }
 	      })
 	      .error(function (data) {
-	      	$scope.formError = "No records";
+	      	vm.formError = "No records";
 	      });
 
-	    $scope.createTask = function () {
+	    vm.createTask = function () {
 	        var modalInstance = $uibModal.open({
 		        templateUrl : '/modalForm/modalForm.view.html',
 		        controller : 'modalCtrl'
 	        });  
 
 	        modalInstance.result.then(function (data) {
-	        	$scope.data.records.push(data);
-	        	$scope.on = false;
+	        	vm.data.records.push(data);
+	        	vm.on = false;
 	        }); 
 	    };
 
-	    $scope.correctTask = function (id, title, desc) {
+	    vm.correctTask = function (id, title, desc) {
 	    	
 	    	var modalInstance = $uibModal.open({
 	    		templateUrl : '/updateModalForm/updateModalForm.html',
@@ -46,44 +49,49 @@
 	    	});
 
 	    	modalInstance.result.then(function (data) {
-	        	todoData.recordAll()
+	        	todoData.recordAll(vm.currentUser)
 	                  .success(function (data) {
-	                    $scope.data = { records: data };
-                        if ($scope.data.records[0]) {
-		                  $scope.on = false;
+	                    vm.data = { records: data };
+                        if (vm.data.records[0]) {
+		                  vm.on = false;
 	                    }
 	                    else {
-		                  $scope.on = true;
+		                  vm.on = true;
 	                    }
 	                  })
 	                  .error(function (data) {
-	      	            $scope.message = "There is no records";
+	      	            vm.message = "There is no records";
 	                  });
 	        });
 	    };
 
-	    $scope.deleteTask = function (id) {
+	    vm.deleteTask = function (id) {
 	    	todoData.deleteOne(id)
 	    	  .success(function(data) {
 	    	  	console.log(data);
 
-	    	  	todoData.recordAll()
+	    	  	todoData.recordAll(vm.currentUser)
 	              .success(function (data) {
-	                $scope.data = { records: data };
-                    if ($scope.data.records[0]) {
-		              $scope.on = false;
+	                vm.data = { records: data };
+                    if (vm.data.records[0]) {
+		              vm.on = false;
 	                }
 	                else {
-		              $scope.on = true;
+		              vm.on = true;
 	                }
 	              })
 	              .error(function (data) {
-	      	        $scope.message = "There is no records";
+	      	        vm.message = "There is no records";
 	              });
 	    	  })
 	    	  .error(function(data) {
 	    	  	console.log(data);
 	    	  })
+	    };
+
+	    vm.logout = function () {
+		    authentication.logout();
+		    $location.path('/');
 	    };
 	};
 

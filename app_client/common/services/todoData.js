@@ -3,28 +3,44 @@
 	  .module('app')
 	  .service('todoData', todoData);
 
-	todoData.$inject = ['$http'];
+	todoData.$inject = ['$http', 'authentication'];
 
-	function todoData ($http) {
+	function todoData ($http, authentication) {
 
 		var recordCreate = function (data) {
-			return $http.post('api/record', data);
+			return $http.post('api/record', data, {
+	    		headers: {
+                    Authorization: 'Bearer ' + authentication.getToken() 
+	    		}
+	    	});
 		};
 
-		var recordAll = function () {
-			return $http.get('api/records');
+		var recordAll = function (data) {
+			return $http.post('api/records', data);
 		};
 
 		var readOne = function (recordid) {
-			return $http.get('api/record/' + recordid);
+			return $http.get('api/record/' + recordid, {
+	    		headers: {
+                    Authorization: 'Bearer ' + authentication.getToken() 
+	    		}
+	    	});
 		};
 
 	    var updateOne = function (recordid, data) {
-	    	return $http.put('api/record/' + recordid, data);
+	    	return $http.put('api/record/' + recordid, data, {
+	    		headers: {
+                    Authorization: 'Bearer ' + authentication.getToken() 
+	    		}
+	    	});
 	    };
 
 	    var deleteOne = function (recordid) {
-	    	return $http.delete('api/record/' + recordid);
+	    	return $http.delete('api/record/' + recordid, {
+	    		headers: {
+                    Authorization: 'Bearer ' + authentication.getToken() 
+	    		}
+	    	});
 	    };
 
 	    return {
