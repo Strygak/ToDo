@@ -1,128 +1,103 @@
-var mongoose = require('mongoose');
-var Rec = mongoose.model('Records');
+const mongoose = require('mongoose');
+const Records = mongoose.model('Records');
 
-var sendJSONresponse = function(res, status, content) {
+const sendJSONresponse = (res, status, content) => {
     res.status(status);
     res.json(content);
 };
 
-module.exports.recordList = function (req, res) {
-    var recordsAll = [];
+exports.recordList = (req, res) => {
+    let recordsAll = [];
 
-    Rec.find({ email: req.body.email }, function (err, records) {
+    Records.find({ email: req.body.email }, (err, records) => {
         if (err) {
             console.log(err);
-        }
-        else {
-            records.forEach(function(doc) {
-                recordsAll.push(doc);  
-            });
+        } else {
+            records.forEach(doc => { recordsAll.push(doc); });
         }
         sendJSONresponse(res, 200, recordsAll);
     });
-}
+};
 
-exports.read = function (req, res) {
-
+exports.read = (req, res) => {
     if (req.params && req.params.recordid) {
-        Rec
-          .findById(req.params.recordid)
-          .exec(function(err, record) {
+        Records.findById(req.params.recordid).exec((err, record) => {
             if (!record) {
                 sendJSONresponse(res, 404, {
-                    "message": "recordid not found"
+                    'message': 'recordid not found'
                 });
                 return;
-            } 
-            else if (err) {
+            } else if (err) {
                 console.log(err);
                 sendJSONresponse(res, 404, err);
                 return;
             }
             sendJSONresponse(res, 200, record);
           });
-    } 
-    else {
+    } else {
         console.log('No recordid specified');
-        sendJSONresponse(res, 404, {
-            "message": "No recordid in request"
-        });
+        sendJSONresponse(res, 404, { 'message': 'No recordid in request' });
     }
-}
+};
 
-exports.create = function (req, res) {
-    Rec.create({
+exports.create = (req, res) => {
+    Records.create({
         title: req.body.title,
         description: req.body.description,
         email: req.body.email
-    },
-
-    function (err, record) {
+    }, (err, record) => {
         if (err) {
             console.log(err);
             sendJSONresponse(res, 400, err);
-        } 
-        else {
+        } else {
             sendJSONresponse(res, 201, record);
         }
     });
-}
+};
 
-exports.update = function (req, res) {
-
+exports.update = (req, res) => {
     if (!req.params.recordid) {
         sendJSONresponse(res, 404, {
-            "message": "Not found, recordid is required"
+            'message': 'Not found, recordid is required'
         });
         return;
     }
   
-    Rec
-      .findById(req.params.recordid)
-      .exec(
-        function(err, record) {
-            if (!record) {
-                sendJSONresponse(res, 404, {
-                    "message": "recordid not found"
-                });
-                return;
-            } 
-            else if (err) {
-                sendJSONresponse(res, 400, err);
-                return;
-            }
-
-            record.title = req.body.title;
-            record.description = req.body.description;
-
-            record.save(function(err, record) {
-                if (err) {
-                    sendJSONresponse(res, 404, err);
-                } 
-                else {
-                    sendJSONresponse(res, 200, record);
-                }
+    Records.findById(req.params.recordid).exec((err, record) => {
+        if (!record) {
+            sendJSONresponse(res, 404, {
+                'message': 'recordid not found'
             });
-        });
-}
+            return;
+        } else if (err) {
+            sendJSONresponse(res, 400, err);
+            return;
+        }
 
-exports.delete = function (req, res) {
-    var recordid = req.params.recordid;
+        record.title = req.body.title;
+        record.description = req.body.description;
+
+        record.save((err, record) => {
+            if (err) {
+                sendJSONresponse(res, 404, err);
+            } else {
+                sendJSONresponse(res, 200, record);
+            }
+        });
+    });
+};
+
+exports.delete = (req, res) => {
+    let recordid = req.params.recordid;
     if (recordid) {
-        Rec
-          .findByIdAndRemove(recordid)
-          .exec(
-            function(err, record) {
+        Records.findByIdAndRemove(recordid).exec((err, record) => {
                 if (err) {
                     sendJSONresponse(res, 404, err);
                     return;
                 }
                 sendJSONresponse(res, 204, null);
             });
-    } 
-    else {
-        sendJSONresponse(res, 404, {
-            "message": "No recordid"
-        });
+    } else {
+        sendJSONresponse(res, 404, { 'message': 'No recordid' });
     }
 };
