@@ -1,20 +1,18 @@
-var mongoose = require('mongoose');
-var dbURI = 'mongodb://localhost/test';
-if (process.env.NODE_ENV === 'production') {
-    dbURI = 'mongodb://heroku_mf1vjvs0:o50ac0npd5rtcbb66i683dr79e@ds037205.mongolab.com:37205/heroku_mf1vjvs0';
-}
+const mongoose = require('mongoose');
+const dbURI = 'mongodb://localhost/test';
+require('./users');
+require('./records');
 
 mongoose.connect(dbURI);
 
-mongoose.connection.on('connected', function() {
+mongoose.connection.on('connected', () => {
     console.log('Mongoose connected to ' + dbURI);
 });
-mongoose.connection.on('error', function(err) {
+
+mongoose.connection.on('error', err => {
     console.log('Mongoose connection error: ' + err);
 });
-mongoose.connection.on('disconnected', function() {
+
+mongoose.connection.on('disconnected', () => {
     console.log('Mongoose disconnected');
 });
-
-require('./records');
-require('./users');

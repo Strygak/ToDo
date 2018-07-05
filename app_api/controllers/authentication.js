@@ -1,21 +1,21 @@
-var passport = require('passport');
-var mongoose = require('mongoose');
-var User = mongoose.model('User');
+const passport = require('passport');
+const mongoose = require('mongoose');
+const Users = mongoose.model('Users');
 
-var sendJSONresponse = function(res, status, content) {
+const sendJSONresponse = (res, status, content) => {
     res.status(status);
     res.json(content);
-}
+};
 
-exports.register = function(req, res) {
+exports.register = (req, res) => {
     if (!req.body.name || !req.body.email || !req.body.password) {
         sendJSONresponse(res, 400, {
-            "message": "All fields required"
+            'message': 'All fields required'
         });
         return;
     }
-    var user = new User();
-
+    
+    let user = new Users();
     user.name = req.body.name;
     user.email = req.body.email;
     
@@ -28,34 +28,30 @@ exports.register = function(req, res) {
         } else {
             
             token = user.generateJwt();
-            sendJSONresponse(res, 200, { "token" : token });
+            sendJSONresponse(res, 200, { 'token' : token });
         }
     });
-}
+};
 
-exports.login = function (req, res) {
+exports.login = (req, res) => {
     if(!req.body.email || !req.body.password) {
         sendJSONresponse(res, 400, {
-            "message": "All fields required"
+            'message': 'All fields required'
         });
         return;
     }
 
-    passport.authenticate('local', function (err, user, info) {
-        var token;
+    passport.authenticate('local', (err, user) => {
 
         if (err) {
             sendJSONresponse(res, 404, err);
             return;
         }
 
-        if (user) {
-            token = user.generateJwt();
-            sendJSONresponse(res, 200, {
-                "token" : token
-            });
-        } else {
-            sendJSONresponse(res, 401, info);
-        }
+        let token = user.generateJwt();
+        sendJSONresponse(res, 200, {
+            'token' : token
+        });
+
     })(req, res);
 };

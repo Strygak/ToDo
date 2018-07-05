@@ -1,9 +1,9 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
-var record = new mongoose.Schema({
+const records = new mongoose.Schema({
 	title: String,
 	description: String,
 	email: String
 });
 
-mongoose.model('record', record);
+mongoose.model('Records', records);

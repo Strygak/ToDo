@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var Rec = mongoose.model('record');
+var Rec = mongoose.model('Records');
 
 var sendJSONresponse = function(res, status, content) {
     res.status(status);
@@ -22,7 +22,7 @@ module.exports.recordList = function (req, res) {
     });
 }
 
-module.exports.readOne = function (req, res) {
+exports.read = function (req, res) {
 
     if (req.params && req.params.recordid) {
         Rec
@@ -50,7 +50,7 @@ module.exports.readOne = function (req, res) {
     }
 }
 
-module.exports.recordCreate = function (req, res) {
+exports.create = function (req, res) {
     Rec.create({
         title: req.body.title,
         description: req.body.description,
@@ -68,7 +68,7 @@ module.exports.recordCreate = function (req, res) {
     });
 }
 
-module.exports.updateOne = function (req, res) {
+exports.update = function (req, res) {
 
     if (!req.params.recordid) {
         sendJSONresponse(res, 404, {
@@ -106,7 +106,7 @@ module.exports.updateOne = function (req, res) {
         });
 }
 
-module.exports.deleteOne = function (req, res) {
+exports.delete = function (req, res) {
     var recordid = req.params.recordid;
     if (recordid) {
         Rec

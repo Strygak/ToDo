@@ -36,8 +36,8 @@ var appClientFiles = [
 
 var uglified = uglifyJs.minify(appClientFiles, { compress : false });
 
-fs.writeFile('public/js/todo.min.js', uglified.code, function (err){
-    if(err) {
+fs.writeFile('public/js/todo.min.js', uglified.code, function (err) {
+    if (err) {
       console.log(err);
     } else {
       console.log("Script generated and saved:", 'todo.min.js');
@@ -61,7 +61,7 @@ app.use(function(req, res) {
     res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
 });
 
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
     if (err.name === 'UnauthorizedError') {
         res.status(401);
         res.json({"message" : err.name + ": " + err.message});

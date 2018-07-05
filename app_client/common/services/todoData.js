@@ -16,7 +16,7 @@
 		};
 
 		var recordAll = function (data) {
-			return $http.post('api/records', data);
+			return $http.get('api/records', data);
 		};
 
 		var readOne = function (recordid) {
