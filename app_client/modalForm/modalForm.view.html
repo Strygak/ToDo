@@ -1,0 +1,9 @@
+<div role="alert" ng-show="formError" class="more15alert">
+    {{ formError }}
+</div>
+<form class="popup" ng-submit="onSubmit()" role="form">
+	<input type="text" name="title" ng-model="formData.title" placeholder="title to 15 characters" required="required"><br>
+	<textarea placeholder="description" rows="5" ng-model="formData.description"></textarea><br>
+	<button type="submit" class="btn btn-info btn-sm">CREATE</button>
+	<button type="button" ng-click="cancel()" class="btn btn-success btn-sm">CANCEL</button>
+</form>
