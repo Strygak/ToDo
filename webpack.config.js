@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: ['./app_client/index.js', 
@@ -13,9 +14,15 @@ module.exports = {
 					'./app_client/common/services/todoData.js',
 					'./app_client/common/services/authentication.service.js'],
   output: {
-    filename: 'index.js',
-    path: path.resolve(__dirname, 'public/js')
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
 	},
+  plugins: [
+    new HtmlWebpackPlugin({
+			title: 'ToDo App',
+			favicon: 'app_client/img/favicon.ico'
+		})
+  ],
 	module: {
 		rules: [
 		  {
@@ -25,6 +32,10 @@ module.exports = {
 		      'css-loader'
 		    ]
 		  }
-		]
+		],
+		rules: [{
+      test: /\.less$/,
+      loader: 'less-loader'
+    }]
 	}
 };

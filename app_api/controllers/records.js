@@ -36,7 +36,6 @@ exports.read = (req, res) => {
             sendJSONresponse(res, 200, record);
           });
     } else {
-        console.log('No recordid specified');
         sendJSONresponse(res, 404, { 'message': 'No recordid in request' });
     }
 };
@@ -48,7 +47,6 @@ exports.create = (req, res) => {
         email: req.body.email
     }, (err, record) => {
         if (err) {
-            console.log(err);
             sendJSONresponse(res, 400, err);
         } else {
             sendJSONresponse(res, 201, record);
@@ -66,13 +64,9 @@ exports.update = (req, res) => {
   
     Records.findById(req.params.recordid).exec((err, record) => {
         if (!record) {
-            sendJSONresponse(res, 404, {
-                'message': 'recordid not found'
-            });
-            return;
+            sendJSONresponse(res, 404, { 'message': 'recordid not found' });
         } else if (err) {
             sendJSONresponse(res, 400, err);
-            return;
         }
 
         record.title = req.body.title;
@@ -89,15 +83,13 @@ exports.update = (req, res) => {
 };
 
 exports.delete = (req, res) => {
-    let recordid = req.params.recordid;
-    if (recordid) {
+    if (req.params.recordid) {
         Records.findByIdAndRemove(recordid).exec((err, record) => {
-                if (err) {
-                    sendJSONresponse(res, 404, err);
-                    return;
-                }
-                sendJSONresponse(res, 204, null);
-            });
+            if (err) {
+                sendJSONresponse(res, 404, err);
+            }
+            sendJSONresponse(res, 204, null);
+        });
     } else {
         sendJSONresponse(res, 404, { 'message': 'No recordid' });
     }
