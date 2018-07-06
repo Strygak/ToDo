@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 const dbURI = 'mongodb://localhost/test';
-require('./users');
-require('./records');
 
 mongoose.connect(dbURI);
 

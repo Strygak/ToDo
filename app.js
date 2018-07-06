@@ -1,17 +1,16 @@
+require('dotenv').load();
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const uglifyJs = require("uglify-js");
+const uglifyJs = require('uglify-js');
 const fs = require('fs');
 const passport = require('passport');
 const routesApi = require('./app_api/routes/index');
 
 require('./app_api/models/db');
-require('./app_api/config/passport');
-require('dotenv').load();
 
 const app = express();
 
@@ -20,7 +19,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 const appClientFiles = [
-    'app_client/app.js',
+    'app_client/index.js',
     'app_client/modalForm/uibModalController.js',
     'app_client/updateModalForm/updateTaskModalCtrl.js',
     'app_client/recordDetail/recordCtrl.js',
@@ -61,7 +60,7 @@ app.use((req, res) => { res.sendFile(path.join(__dirname, 'app_client', 'index.h
 app.use((err, req, res) => {
     if (err.name === 'UnauthorizedError') {
         res.status(401);
-        res.json({"message" : err.name + ": " + err.message});
+        res.json({'message' : err.name + ": " + err.message});
     }
 });
 

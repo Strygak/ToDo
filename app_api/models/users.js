@@ -19,12 +19,12 @@ let usersSchema = new mongoose.Schema({
 usersSchema.methods.setPassword = password => {
 	this.salt = crypto.randomBytes(16).toString('hex');
 	this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex');
-}
+};
 
 usersSchema.methods.validPassword = password => {
 	let hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
 	return this.hash === hash;
-}
+};
 
 usersSchema.methods.generateJwt = () => {
 	let expiry = new Date();
@@ -38,4 +38,4 @@ usersSchema.methods.generateJwt = () => {
 	}, process.env.JWT_SECRET);
 };
 
-mongoose.model('Users', usersSchema);
+exports.usersSchema = usersSchema;

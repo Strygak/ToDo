@@ -1,11 +1,28 @@
 const passport = require('passport');
 const mongoose = require('mongoose');
-const Users = mongoose.model('Users');
+const LocalStrategy = require('passport-local').Strategy;
+const usersSchema = require('../models/users');
+const Users = mongoose.model('Users', usersSchema);
 
 const sendJSONresponse = (res, status, content) => {
     res.status(status);
     res.json(content);
 };
+
+passport.use(new LocalStrategy({ usernameField: 'email' },
+	(username, password, done) => {
+        Users.findOne({ email: username }, (err, user) => {
+            if (err) { return done(err); }
+            if (!user) {
+            	return done(null, false, { message: 'Incorrect username.' });
+            }
+            if (!user.validPassword(password)) {
+            	return done(null, false, { message: 'Incorrect password.' });
+            }
+            return done(null, user);
+        });
+	}
+));
 
 exports.register = (req, res) => {
     if (!req.body.name || !req.body.email || !req.body.password) {

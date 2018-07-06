@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const Records = mongoose.model('Records');
+const recordsSchema = require('../models/records');
+const Records = mongoose.model('Records', recordsSchema);
 
 const sendJSONresponse = (res, status, content) => {
     res.status(status);
