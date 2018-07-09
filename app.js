@@ -20,16 +20,16 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'app_client')));
+app.use(express.static(path.join(__dirname, 'dist')));
+//app.use(express.static(path.join(__dirname, 'app_client')));
 app.use(passport.initialize());
 app.use('/api', routesApi);
-app.use((req, res) => { res.sendFile(path.join(__dirname, 'app_client', 'index.html')); });
+//app.use((req, res) => { res.sendFile(path.join(__dirname, 'dist', 'index.html')); });
 
 app.use((err, req, res) => {
     if (err.name === 'UnauthorizedError') {
         res.status(401);
-        res.json({'message' : err.name + ": " + err.message});
+        res.json({'message': err.name + ': ' + err.message});
     }
 });
 

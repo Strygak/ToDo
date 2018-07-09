@@ -1,11 +1,13 @@
-const angular = require('angular');
-const $ = require('jquery');
-require('popper.js');
-require('angular-route');
-require('bootstrap');
-require('angular-ui-bootstrap')
+import angular from 'angular';
+import 'jquery';
+import 'popper.js';
+import 'angular-route';
+import 'bootstrap';
+import 'angular-ui-bootstrap';
+import 'less';
+import './less/styles.less';
 
-angular.module('app', ['ngRoute', 'ui.bootstrap']);
+angular.module('app', ['ngRoute']);
 
 function config ($routeProvider, $locationProvider) {
     $routeProvider
