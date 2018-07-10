@@ -1,4 +1,5 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
 	entry: {
@@ -15,18 +16,34 @@ module.exports = {
 		         './app_client/common/services/todoData.js',
 		         './app_client/common/services/authentication.service.js']
 	},
-  output: {
-    filename: '[name].js',
-    path: path.resolve(__dirname, 'dist')
+    output: {
+        filename: '[name].js',
+        path: path.resolve(__dirname, 'dist')
 	},
 	module: {
-		rules: [{
-			test: /\.less$/,
-			use: [
-				{ loader: 'style-loader' },
-				{ loader: 'css-loader' },
-				{ loader: 'less-loader' }
-			]
-		}]
-	}
+		rules: [
+			{
+				test: /\.html$/,
+				loader: 'html-loader'
+			},
+			{
+			    test: /\.less$/,
+			    use: [
+					{ loader: 'style-loader' },
+					{ loader: 'css-loader' },
+					{ loader: 'less-loader' }
+			    ]
+			},
+			{
+				test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
+				loader: 'file-loader?name=[name].[ext]'
+			}
+	    ]
+	},
+	plugins: [
+        new HtmlWebpackPlugin({
+			template: './app_client/index.html',
+			favicon: 'app_client/img/favicon.ico'
+		})
+    ]
 };
