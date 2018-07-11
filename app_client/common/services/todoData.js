@@ -7,7 +7,7 @@
 
 	function todoData ($http, authentication) {
 
-		var recordCreate = function (data) {
+		var recordCreate = function(data) {
 			return $http.post('api/record', data, {
 	    		headers: {
                     Authorization: 'Bearer ' + authentication.getToken() 
@@ -15,11 +15,11 @@
 	    	});
 		};
 
-		var recordAll = function (data) {
+		var recordAll = function(data) {
 			return $http.get('api/records', data);
 		};
 
-		var readOne = function (recordid) {
+		var readOne = function(recordid) {
 			return $http.get('api/record/' + recordid, {
 	    		headers: {
                     Authorization: 'Bearer ' + authentication.getToken() 
@@ -27,7 +27,7 @@
 	    	});
 		};
 
-	    var updateOne = function (recordid, data) {
+	    var updateOne = function(recordid, data) {
 	    	return $http.put('api/record/' + recordid, data, {
 	    		headers: {
                     Authorization: 'Bearer ' + authentication.getToken() 
@@ -35,7 +35,7 @@
 	    	});
 	    };
 
-	    var deleteOne = function (recordid) {
+	    var deleteOne = function(recordid) {
 	    	return $http.delete('api/record/' + recordid, {
 	    		headers: {
                     Authorization: 'Bearer ' + authentication.getToken() 

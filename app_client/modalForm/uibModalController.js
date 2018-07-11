@@ -1,5 +1,3 @@
-(function () {
-
 angular
   .module('app')
   .controller('modalCtrl', modalCtrl);
@@ -10,7 +8,7 @@ function modalCtrl ($scope, $uibModalInstance, todoData, authentication) {
 	$scope.formError = "";
 	$scope.currentUser = authentication.currentUser();
 
-	$scope.onSubmit = function () {
+	$scope.onSubmit = function() {
 
 		if ($scope.formData.title.length > 17) {
 		  	$scope.formError = 'more than 17 characters';
@@ -29,13 +27,11 @@ function modalCtrl ($scope, $uibModalInstance, todoData, authentication) {
 		}
 	};
 
-	$scope.close = function (result) {
+	$scope.close = function(result) {
 		$uibModalInstance.close(result);
 	}
 
-	$scope.cancel = function () { 
+	$scope.cancel = function() { 
 		$uibModalInstance.dismiss('cancel'); 
 	}
-};
-
-})();
+}

@@ -1,7 +1,5 @@
-(function () {
-	angular
-	  .module('app')
-	  .controller('startCtrl', startCtrl);
+angular
+	.module('app')
+	.controller('startCtrl', startCtrl);
 
-	  function startCtrl () {}
-})();
+	function startCtrl () {}

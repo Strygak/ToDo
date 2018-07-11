@@ -56,10 +56,7 @@ exports.create = (req, res) => {
 
 exports.update = (req, res) => {
     if (!req.params.recordid) {
-        sendJSONresponse(res, 404, {
-            'message': 'Not found, recordid is required'
-        });
-        return;
+        sendJSONresponse(res, 404, { 'message': 'Not found, recordid is required' });
     }
   
     Records.findById(req.params.recordid).exec((err, record) => {
