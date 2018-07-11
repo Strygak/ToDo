@@ -20,8 +20,8 @@ homeCtrl.$inject = ['$location', '$uibModal', 'todoData', 'authentication'];
 
 	    vm.createTask = function() {
 	        var modalInstance = $uibModal.open({
-		        templateUrl : '/modalForm/modalForm.view.html',
-		        controller : 'modalCtrl'
+		        templateUrl: '/modalForm/modalForm.view.html',
+		        controller: 'modalCtrl'
 	        });  
 
 	        modalInstance.result.then(function(data) {
@@ -33,16 +33,16 @@ homeCtrl.$inject = ['$location', '$uibModal', 'todoData', 'authentication'];
 	    vm.correctTask = function(id, title, desc) {
 	    	
 	    	var modalInstance = $uibModal.open({
-	    		templateUrl : '/updateModalForm/updateModalForm.html',
-	    		controller : 'updateCtrl',
-	    		resolve : {
+	    		templateUrl: '/updateModalForm/updateModalForm.html',
+	    		controller: 'updateCtrl',
+	    		resolve: {
 	    			recordData : function () {
-                        return {
-                    	    recordid : id,
-                    	    title : title,
-                    	    description : desc
-                        };
-                    }
+					return {
+					    recordid: id,
+					    title: title,
+					    description: desc
+					};
+                    		}
 	    		}
 	    	});
 
