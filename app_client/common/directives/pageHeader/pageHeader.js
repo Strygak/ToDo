@@ -5,6 +5,6 @@ angular
 function pageHeader () {
 	return {
 		restrict: 'EA',
-		templateUrl: 'common/directives/pageHeader/pageHeader.html'
+		template: require('./pageHeader.html')
 	}
 }

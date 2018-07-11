@@ -1,8 +1,6 @@
 import angular from 'angular';
-import 'jquery';
 import 'popper.js';
 import 'angular-route';
-import 'bootstrap';
 import 'angular-ui-bootstrap';
 import 'less';
 import './less/styles.less';
@@ -12,9 +10,7 @@ angular.module('app', ['ngRoute', 'ui.bootstrap']);
 function config ($routeProvider, $locationProvider) {
     $routeProvider
        .when('/', {
-          template: require('./startPage/start.html'),
-          controller: 'startCtrl',
-          controllerAs: 'vm'
+          template: require('./startPage/start.html')
        })
        .when('/record/:recordid', {
        	  template: require('./recordDetail/recordDetail.html'),

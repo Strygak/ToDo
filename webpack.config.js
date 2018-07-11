@@ -14,7 +14,7 @@ module.exports = {
 		         './app_client/common/directives/pageHeader/pageHeader.js',
 		         './app_client/home/home.ctrl.js',
 		         './app_client/common/services/todoData.js',
-		         './app_client/common/services/authentication.service.js']
+				 './app_client/common/services/authentication.service.js']
 	},
     output: {
         filename: '[name].js',
@@ -27,6 +27,13 @@ module.exports = {
 				loader: 'html-loader'
 			},
 			{
+			    test: /\.css$/,
+			    use: [
+					{ loader: 'style-loader' },
+					{ loader: 'css-loader' }
+			    ]
+			},
+			{
 			    test: /\.less$/,
 			    use: [
 					{ loader: 'style-loader' },
@@ -35,8 +42,14 @@ module.exports = {
 			    ]
 			},
 			{
-				test: /\.jpe?g$|\.ico$|\.gif$|\.png$|\.svg$|\.woff$|\.ttf$|\.wav$|\.mp3$/,
-				loader: 'file-loader?name=[name].[ext]'
+				test: /\.(woff|woff2|eot|ttf|otf)$/,
+				use: [
+					'file-loader'
+				]
+			},
+			{
+				test: /\.svg$/,
+				loader: 'svg-inline-loader'
 			}
 	    ]
 	},

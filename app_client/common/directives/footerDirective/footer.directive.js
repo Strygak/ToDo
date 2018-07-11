@@ -5,6 +5,6 @@ angular
 function footerGeneric () {
 	return {
 		restrict: 'EA',
-		templateUrl: 'common/directives/footerDirective/footerDirective.html'
+		template: require('./footerDirective.html')
 	};
 }
