@@ -2,8 +2,7 @@
     {{ formError }}
 </div>
 <form class="popup" ng-submit="onUpdate()" role="form">
-	<input type="text" name="title" ng-model="recordData.title" placeholder="to 15 characters"
-	 required="required"><br>
+	<input type="text" name="title" ng-model="recordData.title" placeholder="to 15 characters" required="required"><br>
 	<textarea placeholder="description" rows="5" ng-model="recordData.description"></textarea><br>
 	<button type="submit" class="btn btn-info btn-sm">UPDATE</button>
 	<button type="button" ng-click="cancel()" class="btn btn-success btn-sm">CANCEL</button>
