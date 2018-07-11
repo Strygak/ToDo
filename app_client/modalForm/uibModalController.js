@@ -13,8 +13,7 @@ function modalCtrl ($scope, $uibModalInstance, todoData, authentication) {
 		if ($scope.formData.title.length > 17) {
 		  	$scope.formError = 'more than 17 characters';
 		  	return false;
-		}
-		else {
+		} else {
 			$scope.formData.email = $scope.currentUser.email;
 			todoData.recordCreate($scope.formData)
 			  .success(function(data) {
