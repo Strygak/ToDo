@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
 	entry: {
 		bundle: ['./app_client/index.js', 
-		         './app_client/startPage/start.ctrl.js',
+                './app_client/startPage/start.ctrl.js',
 		         './app_client/modalForm/uibModalController.js', 
 		         './app_client/updateModalForm/updateTaskModalCtrl.js',
 		         './app_client/recordDetail/recordCtrl.js',
