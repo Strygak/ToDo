@@ -9,8 +9,7 @@ const sendJSONresponse = (res, status, content) => {
     res.json(content);
 };
 
-passport.use(new LocalStrategy({ usernameField: 'email' },
-	(username, password, done) => {
+passport.use(new LocalStrategy({ usernameField: 'email' }, (username, password, done) => {
         Users.findOne({ email: username }, (err, user) => {
             if (err) { return done(err); }
             if (!user) {
