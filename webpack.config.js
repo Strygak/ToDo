@@ -55,7 +55,7 @@ module.exports = {
 	    ]
 	},
 	plugins: [
-        new HtmlWebpackPlugin({
+    	new HtmlWebpackPlugin({
 			template: './app_client/index.html',
 			favicon: 'app_client/img/favicon.ico'
 		}),
