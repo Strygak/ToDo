@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -14,7 +15,7 @@ module.exports = {
 		         './app_client/common/directives/pageHeader/pageHeader.js',
 		         './app_client/home/home.ctrl.js',
 		         './app_client/common/services/todoData.js',
-                         './app_client/common/services/authentication.service.js']
+                 './app_client/common/services/authentication.service.js']
 	},
     output: {
         filename: '[name].js',
@@ -57,6 +58,10 @@ module.exports = {
         new HtmlWebpackPlugin({
 			template: './app_client/index.html',
 			favicon: 'app_client/img/favicon.ico'
-	})
+		}),
+		new webpack.ProvidePlugin({
+			$: 'jquery',
+			jQuery: 'jquery'
+		})
     ]
 };

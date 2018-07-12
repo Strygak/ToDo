@@ -1,9 +1,8 @@
 import angular from 'angular';
-import 'popper.js';
 import 'angular-route';
 import 'angular-ui-bootstrap';
-import 'less';
 import './less/styles.less';
+import 'bootstrap';
 
 angular.module('app', ['ngRoute', 'ui.bootstrap']);
 
